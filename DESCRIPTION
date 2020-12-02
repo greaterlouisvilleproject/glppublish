@@ -1,0 +1,13 @@
+Package: glppublish
+Title: Publish GLP Data to GitHub for Website Connectivity
+Version: 0.1
+Authors@R: c(
+    person("James", "Barlow", email = "seth.phillips@louisville.edu", role = "cre"),
+    person("Seth", "Phillips", email = "james.barlow1@louisville.edu", role = "aut"),
+    person("The", "Greater Louisville Project", email = "glp@greaterlouisvilleproject.org", role = "cph"))
+Description: GLP Publish generates Excel files for public consumption and uploads them to GLP's GitHub data repository, which is then indexed by the website when requesting a data download.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
