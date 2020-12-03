@@ -40,8 +40,6 @@ glp_publish <- function(file) {
   glp_end_publish()
 }
 
-install.packages("openxlsx", dependencies = TRUE)
-library(openxlsx)
 #' @export
 glp_export_xls <- function(data_tbl, doc_tbl, dest_file){
   write.xlsx(data_tbl,dest_file,sheetName="Data")
