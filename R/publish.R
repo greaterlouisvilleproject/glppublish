@@ -5,10 +5,12 @@ glp_start_publish <- function() {
   if(!file.exists(repo_path)){
     #mkdir(repo_path)
     system2("git", paste("-C \"", Sys.getenv(c("APPDATA")), "\" clone https://github.com/greaterlouisvilleproject/glp-downloadable.git", sep = ""))
+    system2("git", paste("-C \"", repo_path, "\" checkout develop", sep = ""))
   }
   else
   {
-    system2("git", paste("-C \"", repo_path, "\" pull", sep = ""))
+    system2("git", paste("-C \"", repo_path, "\" checkout develop", sep = ""))
+    system2("git", paste("-C \"", repo_path, "\" pull origin develop", sep = ""))
   }
 }
 
@@ -17,7 +19,7 @@ glp_publish_file <- function(file) {
   Sys.setenv(HOME = Sys.getenv("UserProfile"))
   repo_path <- path.expand(paste(Sys.getenv(c("APPDATA")), "\\glp-downloadable", sep = ""))
 
-  file.copy(path.expand(file),paste(repo_path, "\\", basename(file), sep = ""))
+  file.copy(path.expand(file),paste(repo_path, "\\", basename(file), sep = ""),overwrite = TRUE)
 
   system2("git", paste("-C \"", repo_path, "\" add \"", basename(file), "\"",sep = ""))
   system2("git", paste("-C \"", repo_path, "\" commit -m \"", basename(file) ,"\"", sep = ""))
@@ -26,7 +28,7 @@ glp_publish_file <- function(file) {
 #' @export
 glp_end_publish <- function() {
   repo_path <- path.expand(paste(Sys.getenv(c("APPDATA")), "\\glp-downloadable", sep = ""))
-  system2("git", paste("-C \"", repo_path, "\" push", sep = ""))
+  system2("git", paste("-C \"", repo_path, "\" push origin develop", sep = ""))
 }
 
 #This function publishes one file.
